@@ -25,24 +25,14 @@ public class LanguageService {
 	}
 	
 	public Language findLanguage(Long id) {
-		Optional<Language> optionalLang = langRepo.findById(id);
-		if(optionalLang.isPresent()) {
-			return optionalLang.get();
-		} else {
-			return null;
-		}
+		return this.langRepo.findById(id).orElse(null);
 	}
 	
-	public Language updateLanguage(Long id,Language lang) {
-		Optional<Language> optionalLang = langRepo.findById(id);
-		if(optionalLang.isPresent()) {
-			return langRepo.save(lang);			
-		} else {
-			return null;
-		}
+	public Language updateLanguage(Language lang) {
+		return this.langRepo.save(lang);
 	}
 	
-	public void deleteBook(Long id) {
+	public void deleteLang(Long id) {
 		langRepo.deleteById(id);
 	}
 }

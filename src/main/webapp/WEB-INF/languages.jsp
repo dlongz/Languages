@@ -13,7 +13,7 @@
 <body>
 	<div class="container-sm">
 		<div>
-			<table>
+			<table class="table table-primary table-hover table-striped">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -24,12 +24,17 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${language}" var="language">				
+					<c:forEach items="${languages}" var="lang">				
 					<tr>
-						<td><c:out value="${language.name}"/></td>
-						<td><c:out value="${language.creator}"/></td>
-						<td><c:out value="${language.version}"/></td>
-						<td><a href="/destroy">Delete</a> | <a href="/updateS">Edit</a></td>
+						<td><a href="/languages/${lang.id}"><c:out value="${lang.name}"/></a></td>
+						<td><c:out value="${lang.creator}"/></td>
+						<td><c:out value="${lang.version}"/></td>
+						<td>
+							<form action="/destroy/${lang.id}" method="post">
+								<input type="hidden" name="_method" value="delete">
+								<input type="submit" value="Delete" class="btn btn-danger mb-3">
+							</form>   <a href="/update/${lang.id}" class="btn btn-warning">Edit</a>
+						</td>
 					</tr>
 					</c:forEach>
 				</tbody>
